@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <p>Usuário configurado:</p>
+        <ul>
+            <li>Nome: {{ usuarioConfigurado.nome }}</li>
+            <li>Email: {{ usuarioConfigurado.email }}</li>
+            <li>Senha: {{ usuarioConfigurado.senha }}</li>
+            <li>Hash da Senha: {{ usuarioConfigurado.hashSenha }}</li>
+        </ul>
+    </div>
+
+    <script>
+        // Função para gerar um hash da senha
+        function gerarHashSenha(senha) {
+            // Lógica para gerar o hash da senha
+            return "hash_da_senha"; // Substitua isso pela sua implementação real de hash
+        }
+
+        // Função para configurar o usuário
+        function configurarUsuario({ nome, email, senha }) {
+            // Gerar o hash da senha
+            const hashSenha = gerarHashSenha(senha);
+
+            // Retornar as configurações do usuário com o hashSenha
+            return {
+                nome,
+                email,
+                senha,
+                hashSenha
+            };
+        }
+
+        // Exemplo de uso
+        const usuario = {
+            nome: 'Exemplo',
+            email: 'exemplo@email.com',
+            senha: 'senha123'
+        };
+
+        // Configurar o usuário usando a função
+        const usuarioConfigurado = configurarUsuario(usuario);
+
+        // Inicializar o Vue.js e vincular o objeto de usuário configurado
+        new Vue({
+            el: '#app',
+            data: {
+                usuarioConfigurado: usuarioConfigurado
+            }
+        });
+    </script>
+</body>
+</html>
