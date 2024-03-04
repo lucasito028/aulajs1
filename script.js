@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 //Excercicie 1
 function excercise01(){
     const pessoa = {
@@ -51,18 +53,20 @@ function excercise04() {
 }
 
 function excercise05({ nome, email, senha }) {
-    // This code I get of Internet
-    const hashSenha = hashSync(senha, 10); 
+
+    //This Part I Get in Internet
+    const salt = bcrypt.genSaltSync(10);
+
+    const hashSenha = bcrypt.hashSync(senha, salt);
 
     return {
         nome,
         email,
-        senha, 
-        hashSenha
+        senha: hashSenha 
     };
 }
 
-
+// Utilize a função com os parâmetros desejados
 const usuarioConfigurado = excercise05({
     nome: 'João',
     email: 'joao@example.com',
